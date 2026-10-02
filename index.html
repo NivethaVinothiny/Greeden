@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenden | Home</title>
+  
+  <!-- Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f2f8f3',
+              100: '#e1f0e4',
+              500: '#2E7D32',
+              600: '#256729',
+              700: '#1c4f20',
+              900: '#103013',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-normal antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="bg-brand-500 text-white sticky top-0 z-50 shadow-md w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white flex items-center gap-2">
+          <span>🌿</span> Greenden
+        </a>
+        
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex items-center space-x-8 font-semibold text-base">
+          <a href="index.html" class="text-white border-b-2 border-white pb-1">Home</a>
+          <a href="product.html" class="text-emerald-100 hover:text-white transition-colors">Products</a>
+          <a href="contact.html" class="text-emerald-100 hover:text-white transition-colors">Contact</a>
+          
+          <!-- Cart Icon -->
+          <a href="cart.html" aria-label="Shopping Cart" class="relative bg-brand-600 hover:bg-brand-700 p-3 rounded-full text-white transition-all flex items-center justify-center">
+            <span class="text-xl">🛒</span>
+            <span id="nav-cart-count" class="absolute -top-1 -right-1 bg-white text-brand-700 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">3</span>
+          </a>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div class="md:hidden flex items-center space-x-4">
+          <a href="cart.html" aria-label="Shopping Cart" class="p-2.5 bg-brand-600 rounded-full text-white relative">
+            <span class="text-lg">🛒</span> 
+            <span class="absolute -top-1 -right-1 bg-white text-brand-700 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">3</span>
+          </a>
+          <button id="menu-btn" class="p-2 rounded-xl text-white hover:bg-brand-600 focus:outline-none" aria-label="Toggle Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h18"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="overlay" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity opacity-0"></div>
+  <aside id="side-drawer" class="fixed top-0 right-0 w-72 h-full bg-brand-900 text-white z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between shadow-2xl">
+    <div>
+      <div class="flex justify-between items-center mb-8 border-b border-brand-700 pb-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">🌿 Greenden</h2>
+        <button id="close-btn" class="text-slate-300 hover:text-white text-3xl focus:outline-none">&times;</button>
+      </div>
+      <ul class="space-y-6 text-lg font-medium">
+        <li><a href="index.html" class="block text-white font-bold">Home</a></li>
+        <li><a href="product.html" class="block hover:text-brand-100">Products</a></li>
+        <li><a href="contact.html" class="block hover:text-brand-100">Contact</a></li>
+        <li><a href="cart.html" class="block hover:text-brand-100">My Cart (3)</a></li>
+      </ul>
+    </div>
+    <div class="text-xs text-brand-100/60">© 2026 Greenden</div>
+  </aside>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="bg-brand-50 text-slate-800 py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+      <div class="space-y-6 max-w-xl text-center md:text-left">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          Bring Nature Inside Your Living Space
+        </h1>
+        <p class="text-slate-600 text-base sm:text-lg">
+          Discover healthy, beautiful potted plants to refresh your living environment, improve air quality, and bring peace to your room.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
+          <a href="product.html" class="px-7 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl transition-all shadow-md">
+            Explore Products
+          </a>
+          <a href="contact.html" class="px-7 py-3.5 border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-bold rounded-xl transition-all">
+            Get in Touch
+          </a>
+        </div>
+      </div>
+      <div class="w-full max-w-md">
+        <img src="https://images.unsplash.com/photo-1545241047-6083a3684587?w=600" alt="Plant Decoration" class="rounded-3xl shadow-xl w-full h-80 sm:h-96 object-cover border-4 border-white">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FLEXBOX FEATURES / DESCRIPTIONS ==================== -->
+  <section class="py-12 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-stretch justify-between gap-6">
+        
+        <!-- Feature 1 -->
+        <div class="flex-1 bg-slate-50 p-6 rounded-2xl border border-slate-200 flex items-start gap-4 hover:shadow-sm transition-shadow">
+          <div class="p-3 bg-brand-100 text-brand-700 rounded-xl text-2xl flex-shrink-0">🌱</div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-lg">Large Plant Variety</h3>
+            <p class="text-slate-600 text-sm mt-1">We offer over 100+ varieties of handpicked indoor and outdoor plants crafted for every room type.</p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="flex-1 bg-slate-50 p-6 rounded-2xl border border-slate-200 flex items-start gap-4 hover:shadow-sm transition-shadow">
+          <div class="p-3 bg-brand-100 text-brand-700 rounded-xl text-2xl flex-shrink-0">🚚</div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-lg">Fast & Safe Shipping</h3>
+            <p class="text-slate-600 text-sm mt-1">Special eco-friendly packaging designed to keep your potted plants healthy during transit.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="flex-1 bg-slate-50 p-6 rounded-2xl border border-slate-200 flex items-start gap-4 hover:shadow-sm transition-shadow">
+          <div class="p-3 bg-brand-100 text-brand-700 rounded-xl text-2xl flex-shrink-0">💬</div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-lg">24/7 Plant Support</h3>
+            <p class="text-slate-600 text-sm mt-1">Got questions about watering or sunlight? Our expert botanists are here to help you 24/7.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PARAGRAPH SECTION: INDOOR PLANTS & ARCHITECTURE ==================== -->
+  <section class="py-16 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Paragraph Text Content -->
+        <div class="space-y-5">
+          <span class="text-brand-500 font-extrabold text-xs uppercase tracking-wider bg-brand-100 px-3 py-1 rounded-full">Interior Design & Biophilia</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-snug">
+            Harmonizing Indoor Plants with Modern Home Architecture
+          </h2>
+          <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+            In modern architectural design, foliage is no longer just an afterthought; it is an essential structural element that bridges modern living with organic nature. Integrating indoor plants into interior spaces enhances aesthetics, improves air quality, and lowers stress levels.
+          </p>
+          <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+            Whether you are working with minimalist Scandinavian interiors, industrial brick walls, or classic wooden aesthetics, choosing the right plant shape and pot texture complements structural lines, softening hard architectural angles and bringing vibrant energy into every corner.
+          </p>
+          <div class="pt-2">
+            <a href="product.html" class="inline-flex items-center gap-2 font-bold text-brand-600 hover:text-brand-700 transition-colors">
+              <span>Read More Architecture Tips</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Section Image -->
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=600" alt="Indoor Plants in Architecture" class="rounded-3xl shadow-lg w-full h-80 sm:h-96 object-cover border-4 border-white">
+          <div class="absolute -bottom-5 -left-5 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 hidden sm:block">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl">🌿</span>
+              <div>
+                <p class="font-bold text-slate-900 text-sm">Biophilic Design</p>
+                <p class="text-slate-500 text-xs">Transforming urban interiors</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED PRODUCTS (4 CARDS) ==================== -->
+  <section class="py-16 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Best Seller Plants</h2>
+          <p class="text-slate-500 text-sm mt-1">Handpicked customer favorites for your home and office space.</p>
+        </div>
+        <a href="product.html" class="font-bold text-brand-500 hover:text-brand-600 transition-colors text-sm flex items-center gap-1">
+          View All Products <span>→</span>
+        </a>
+      </div>
+
+      <!-- 4 Products Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+        
+        <!-- Card 1 -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="overflow-hidden rounded-xl bg-slate-100 mb-4 h-56 flex items-center justify-center">
+              <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=500" alt="Snake Plant" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            </div>
+            <span class="text-[11px] font-bold text-brand-500 uppercase tracking-wider">Air Purifying</span>
+            <h3 class="font-bold text-lg text-slate-900 mt-0.5">Snake Plant</h3>
+            <p class="text-slate-500 text-xs mt-1">Low maintenance indoor air purifier.</p>
+            <p class="text-brand-500 font-extrabold mt-3 text-lg">$30.00</p>
+          </div>
+          <button class="mt-5 w-full py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm rounded-xl transition-colors shadow-sm">Add to Cart 🛒</button>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="overflow-hidden rounded-xl bg-slate-100 mb-4 h-56 flex items-center justify-center">
+              <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=500" alt="Monstera Deliciosa" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            </div>
+            <span class="text-[11px] font-bold text-brand-500 uppercase tracking-wider">Indoor</span>
+            <h3 class="font-bold text-lg text-slate-900 mt-0.5">Monstera Deliciosa</h3>
+            <p class="text-slate-500 text-xs mt-1">Popular tropical statement plant.</p>
+            <p class="text-brand-500 font-extrabold mt-3 text-lg">$45.00</p>
+          </div>
+          <button class="mt-5 w-full py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm rounded-xl transition-colors shadow-sm">Add to Cart 🛒</button>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="overflow-hidden rounded-xl bg-slate-100 mb-4 h-56 flex items-center justify-center">
+              <img src="https://images.unsplash.com/photo-1545241047-6083a3684587?w=500" alt="Peace Lily" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            </div>
+            <span class="text-[11px] font-bold text-brand-500 uppercase tracking-wider">Air Purifying</span>
+            <h3 class="font-bold text-lg text-slate-900 mt-0.5">Peace Lily</h3>
+            <p class="text-slate-500 text-xs mt-1">Elegant white blooms with green leaves.</p>
+            <p class="text-brand-500 font-extrabold mt-3 text-lg">$25.00</p>
+          </div>
+          <button class="mt-5 w-full py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm rounded-xl transition-colors shadow-sm">Add to Cart 🛒</button>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="overflow-hidden rounded-xl bg-slate-100 mb-4 h-56 flex items-center justify-center">
+              <img src="https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=500" alt="Aloe Vera" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            </div>
+            <span class="text-[11px] font-bold text-brand-500 uppercase tracking-wider">Succulent</span>
+            <h3 class="font-bold text-lg text-slate-900 mt-0.5">Aloe Vera</h3>
+            <p class="text-slate-500 text-xs mt-1">Medicinal succulent plant for health.</p>
+            <p class="text-brand-500 font-extrabold mt-3 text-lg">$15.00</p>
+          </div>
+          <button class="mt-5 w-full py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm rounded-xl transition-colors shadow-sm">Add to Cart 🛒</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== NEWSLETTER SECTION ==================== -->
+  <section class="py-16 bg-brand-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <div class="inline-block p-3 bg-brand-100 text-brand-600 rounded-full text-2xl">
+        📩
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Join Our Green Newsletter
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base max-w-xl mx-auto">
+        Subscribe to get special discounts, plant care guides, and updates about our new arrivals directly to your inbox.
+      </p>
+
+      <form onsubmit="event.preventDefault();" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
+        <input 
+          type="email" 
+          placeholder="Enter your email address..." 
+          required 
+          class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 shadow-sm text-sm"
+        >
+        <button 
+          type="submit" 
+          class="px-7 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm rounded-xl transition-all shadow-md whitespace-nowrap"
+        >
+          Subscribe
+        </button>
+      </form>
+      <p class="text-xs text-slate-400">We respect your privacy. Unsubscribe at any time.</p>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-brand-900 text-slate-300 pt-16 pb-8 border-t border-brand-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-brand-700/60">
+      <div class="space-y-4">
+        <a href="index.html" class="text-2xl font-black text-white flex items-center gap-2"><span>🌿</span> Greenden</a>
+        <p class="text-slate-300 text-sm">Your trusted online nursery bringing healthy plants straight to your home.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="product.html" class="hover:text-white">Products</a></li>
+          <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-4">Categories</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="product.html" class="hover:text-white">Indoor Plants</a></li>
+          <li><a href="product.html" class="hover:text-white">Air Purifiers</a></li>
+          <li><a href="product.html" class="hover:text-white">Succulents</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-4">Contact</h4>
+        <p class="text-sm text-slate-300">📍 123 Botanical Ave, Green City</p>
+        <p class="text-sm text-slate-300 mt-2">✉️ support@greenden.com</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-xs text-center text-slate-400">
+      © 2026 Greenden.com | All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Drawer Script -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sideDrawer = document.getElementById('side-drawer');
+    const overlay = document.getElementById('overlay');
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+          overlay.classList.remove('opacity-0');
+          sideDrawer.classList.remove('translate-x-full');
+        }, 10);
+      });
+    }
+
+    const closeDrawer = () => {
+      sideDrawer.classList.add('translate-x-full');
+      overlay.classList.add('opacity-0');
+      setTimeout(() => overlay.classList.add('hidden'), 300);
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+  </script>
+</body>
+</html>

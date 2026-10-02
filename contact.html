@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenden | Contact Us</title>
+  
+  <!-- Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f2f8f3',
+              100: '#e1f0e4',
+              500: '#2E7D32',
+              600: '#256729',
+              700: '#1c4f20',
+              900: '#103013',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-normal antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="bg-brand-500 text-white sticky top-0 z-50 shadow-md w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white flex items-center gap-2">
+          <span>🌿</span> Greenden
+        </a>
+        
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex items-center space-x-8 font-semibold text-base">
+          <a href="index.html" class="text-emerald-100 hover:text-white transition-colors">Home</a>
+          <a href="product.html" class="text-emerald-100 hover:text-white transition-colors">Products</a>
+          <a href="contact.html" class="text-white border-b-2 border-white pb-1">Contact</a>
+          
+          <!-- Cart Icon -->
+          <a href="cart.html" aria-label="Shopping Cart" class="relative bg-brand-600 hover:bg-brand-700 p-3 rounded-full text-white transition-all flex items-center justify-center">
+            <span class="text-xl">🛒</span>
+            <span id="nav-cart-count" class="absolute -top-1 -right-1 bg-white text-brand-700 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">3</span>
+          </a>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div class="md:hidden flex items-center space-x-4">
+          <a href="cart.html" aria-label="Shopping Cart" class="p-2.5 bg-brand-600 rounded-full text-white relative">
+            <span class="text-lg">🛒</span> 
+            <span class="absolute -top-1 -right-1 bg-white text-brand-700 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">3</span>
+          </a>
+          <button id="menu-btn" class="p-2 rounded-xl text-white hover:bg-brand-600 focus:outline-none" aria-label="Toggle Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h18"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="overlay" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity opacity-0"></div>
+  <aside id="side-drawer" class="fixed top-0 right-0 w-72 h-full bg-brand-900 text-white z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between shadow-2xl">
+    <div>
+      <div class="flex justify-between items-center mb-8 border-b border-brand-700 pb-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">🌿 Greenden</h2>
+        <button id="close-btn" class="text-slate-300 hover:text-white text-3xl focus:outline-none">&times;</button>
+      </div>
+      <ul class="space-y-6 text-lg font-medium">
+        <li><a href="index.html" class="block hover:text-brand-100">Home</a></li>
+        <li><a href="product.html" class="block hover:text-brand-100">Products</a></li>
+        <li><a href="contact.html" class="block text-white font-bold">Contact</a></li>
+        <li><a href="cart.html" class="block hover:text-brand-100">My Cart (3)</a></li>
+      </ul>
+    </div>
+    <div class="text-xs text-brand-100/60">© 2026 Greenden</div>
+  </aside>
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <section class="bg-white border-b border-slate-200 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto text-center space-y-3">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Get in Touch With Us</h1>
+      <p class="text-slate-600 max-w-xl mx-auto text-sm sm:text-base">Have questions about plant care, order status, or bulk corporate gifting? We're here to help!</p>
+    </div>
+  </section>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Direct Contact Info Card -->
+      <div class="lg:col-span-5 bg-brand-700 text-white p-8 sm:p-10 rounded-3xl shadow-xl space-y-8">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-white">Reach Us Directly</h2>
+          <p class="text-emerald-100 text-sm mt-2">Visit our local garden store or connect with our customer care team.</p>
+        </div>
+
+        <div class="space-y-6 text-sm">
+          <div class="flex items-start gap-4">
+            <div class="p-3 bg-brand-600 rounded-2xl text-xl flex-shrink-0">📍</div>
+            <div>
+              <h3 class="font-bold text-white">Our Nursery</h3>
+              <p class="text-emerald-100/90 mt-0.5">123 Botanical Avenue, Green City, GC 40001</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="p-3 bg-brand-600 rounded-2xl text-xl flex-shrink-0">📞</div>
+            <div>
+              <h3 class="font-bold text-white">Phone Support</h3>
+              <p class="text-emerald-100/90 mt-0.5">+1 (800) 473-3633</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="p-3 bg-brand-600 rounded-2xl text-xl flex-shrink-0">✉️</div>
+            <div>
+              <h3 class="font-bold text-white">Email Address</h3>
+              <p class="text-emerald-100/90 mt-0.5">support@greenden.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-brand-600">
+          <p class="text-xs text-emerald-100/70">🕒 Working Hours: Mon - Sat (9:00 AM - 6:00 PM)</p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Send Us a Message</h2>
+
+        <form onsubmit="event.preventDefault();" class="space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">First Name</label>
+              <input type="text" placeholder="John" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Last Name</label>
+              <input type="text" placeholder="Doe" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Email Address</label>
+            <input type="email" placeholder="john@example.com" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Message</label>
+            <textarea rows="5" placeholder="How can we help you?" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm resize-none"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm rounded-xl transition-all shadow-md">
+            Send Message 🚀
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-brand-900 text-slate-300 pt-16 pb-8 border-t border-brand-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-brand-700/60">
+      <div class="space-y-4">
+        <a href="index.html" class="text-2xl font-black text-white flex items-center gap-2"><span>🌿</span> Greenden</a>
+        <p class="text-slate-300 text-sm">Your trusted online nursery bringing healthy plants straight to your home.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="product.html" class="hover:text-white">Products</a></li>
+          <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-4">Categories</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="product.html" class="hover:text-white">Indoor Plants</a></li>
+          <li><a href="product.html" class="hover:text-white">Air Purifiers</a></li>
+          <li><a href="product.html" class="hover:text-white">Succulents</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-4">Contact</h4>
+        <p class="text-sm text-slate-300">📍 123 Botanical Ave, Green City</p>
+        <p class="text-sm text-slate-300 mt-2">✉️ support@greenden.com</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-xs text-center text-slate-400">
+      © 2026 Greenden.com | All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Drawer Script -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sideDrawer = document.getElementById('side-drawer');
+    const overlay = document.getElementById('overlay');
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+          overlay.classList.remove('opacity-0');
+          sideDrawer.classList.remove('translate-x-full');
+        }, 10);
+      });
+    }
+
+    const closeDrawer = () => {
+      sideDrawer.classList.add('translate-x-full');
+      overlay.classList.add('opacity-0');
+      setTimeout(() => overlay.classList.add('hidden'), 300);
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+  </script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenden | Shopping Cart</title>
+  
+  <!-- Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f2f8f3',
+              100: '#e1f0e4',
+              500: '#2E7D32',
+              600: '#256729',
+              700: '#1c4f20',
+              900: '#103013',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-normal antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="bg-brand-500 text-white sticky top-0 z-50 shadow-md w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white flex items-center gap-2">
+          <span>🌿</span> Greenden
+        </a>
+        
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex items-center space-x-8 font-semibold text-base">
+          <a href="index.html" class="text-emerald-100 hover:text-white transition-colors">Home</a>
+          <a href="product.html" class="text-emerald-100 hover:text-white transition-colors">Products</a>
+          <a href="contact.html" class="text-emerald-100 hover:text-white transition-colors">Contact</a>
+          
+          <!-- Cart Icon (Active) -->
+          <a href="cart.html" aria-label="Shopping Cart" class="relative bg-brand-700 p-3 rounded-full text-white ring-2 ring-white/50 transition-all flex items-center justify-center">
+            <span class="text-xl">🛒</span>
+            <span id="nav-cart-count" class="absolute -top-1 -right-1 bg-white text-brand-700 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">3</span>
+          </a>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div class="md:hidden flex items-center space-x-4">
+          <a href="cart.html" aria-label="Shopping Cart" class="p-2.5 bg-brand-700 rounded-full text-white relative ring-2 ring-white/40">
+            <span class="text-lg">🛒</span> 
+            <span class="absolute -top-1 -right-1 bg-white text-brand-700 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center mobile-cart-count">3</span>
+          </a>
+          <button id="menu-btn" class="p-2 rounded-xl text-white hover:bg-brand-600 focus:outline-none" aria-label="Toggle Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h18"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="overlay" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity opacity-0"></div>
+  <aside id="side-drawer" class="fixed top-0 right-0 w-72 h-full bg-brand-900 text-white z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between shadow-2xl">
+    <div>
+      <div class="flex justify-between items-center mb-8 border-b border-brand-700 pb-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">🌿 Greenden</h2>
+        <button id="close-btn" class="text-slate-300 hover:text-white text-3xl focus:outline-none">&times;</button>
+      </div>
+      <ul class="space-y-6 text-lg font-medium">
+        <li><a href="index.html" class="block hover:text-brand-100">Home</a></li>
+        <li><a href="product.html" class="block hover:text-brand-100">Products</a></li>
+        <li><a href="contact.html" class="block hover:text-brand-100">Contact</a></li>
+        <li><a href="cart.html" class="block text-white font-bold">My Cart (<span class="drawer-cart-count">3</span>)</a></li>
+      </ul>
+    </div>
+    <div class="text-xs text-brand-100/60">© 2026 Greenden</div>
+  </aside>
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <section class="bg-white border-b border-slate-200 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight text-center sm:text-left">Your Shopping Cart</h1>
+        <p class="text-slate-500 text-sm mt-1 text-center sm:text-left">Review your selected plants and proceed to checkout.</p>
+      </div>
+      <a href="product.html" class="text-sm font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+        ← Continue Shopping
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== MAIN CART CONTENT ==================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      
+      <!-- Cart Items List (8 Cols) -->
+      <div class="lg:col-span-8 space-y-4" id="cart-items-container">
+        
+        <!-- Cart Item 1 -->
+        <div class="cart-item bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4" data-price="30.00">
+          <div class="flex items-center gap-4 w-full sm:w-auto">
+            <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=300" alt="Snake Plant" class="w-20 h-20 rounded-xl object-cover bg-slate-100 border border-slate-100 flex-shrink-0">
+            <div>
+              <span class="text-[10px] font-bold text-brand-500 uppercase tracking-wider">Air Purifying</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Snake Plant</h3>
+              <p class="text-slate-500 text-xs">$30.00 each</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100">
+            <!-- Quantity Controls -->
+            <div class="flex items-center border border-slate-200 rounded-xl bg-slate-50 overflow-hidden">
+              <button class="btn-minus px-3.5 py-1.5 text-slate-600 hover:bg-brand-500 hover:text-white font-bold transition-colors">-</button>
+              <span class="qty-count px-3 text-sm font-bold text-slate-800">1</span>
+              <button class="btn-plus px-3.5 py-1.5 text-slate-600 hover:bg-brand-500 hover:text-white font-bold transition-colors">+</button>
+            </div>
+
+            <p class="item-total font-extrabold text-brand-600 text-lg sm:text-xl">$30.00</p>
+
+            <button class="btn-remove text-slate-400 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors" aria-label="Remove item">
+              🗑️
+            </button>
+          </div>
+        </div>
+
+        <!-- Cart Item 2 -->
+        <div class="cart-item bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4" data-price="45.00">
+          <div class="flex items-center gap-4 w-full sm:w-auto">
+            <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=300" alt="Monstera Deliciosa" class="w-20 h-20 rounded-xl object-cover bg-slate-100 border border-slate-100 flex-shrink-0">
+            <div>
+              <span class="text-[10px] font-bold text-brand-500 uppercase tracking-wider">Indoor</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Monstera Deliciosa</h3>
+              <p class="text-slate-500 text-xs">$45.00 each</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100">
+            <div class="flex items-center border border-slate-200 rounded-xl bg-slate-50 overflow-hidden">
+              <button class="btn-minus px-3.5 py-1.5 text-slate-600 hover:bg-brand-500 hover:text-white font-bold transition-colors">-</button>
+              <span class="qty-count px-3 text-sm font-bold text-slate-800">1</span>
+              <button class="btn-plus px-3.5 py-1.5 text-slate-600 hover:bg-brand-500 hover:text-white font-bold transition-colors">+</button>
+            </div>
+
+            <p class="item-total font-extrabold text-brand-600 text-lg sm:text-xl">$45.00</p>
+
+            <button class="btn-remove text-slate-400 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors" aria-label="Remove item">
+              🗑️
+            </button>
+          </div>
+        </div>
+
+        <!-- Cart Item 3 -->
+        <div class="cart-item bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4" data-price="25.00">
+          <div class="flex items-center gap-4 w-full sm:w-auto">
+            <img src="https://images.unsplash.com/photo-1545241047-6083a3684587?w=300" alt="Peace Lily" class="w-20 h-20 rounded-xl object-cover bg-slate-100 border border-slate-100 flex-shrink-0">
+            <div>
+              <span class="text-[10px] font-bold text-brand-500 uppercase tracking-wider">Air Purifying</span>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">Peace Lily</h3>
+              <p class="text-slate-500 text-xs">$25.00 each</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100">
+            <div class="flex items-center border border-slate-200 rounded-xl bg-slate-50 overflow-hidden">
+              <button class="btn-minus px-3.5 py-1.5 text-slate-600 hover:bg-brand-500 hover:text-white font-bold transition-colors">-</button>
+              <span class="qty-count px-3 text-sm font-bold text-slate-800">1</span>
+              <button class="btn-plus px-3.5 py-1.5 text-slate-600 hover:bg-brand-500 hover:text-white font-bold transition-colors">+</button>
+            </div>
+
+            <p class="item-total font-extrabold text-brand-600 text-lg sm:text-xl">$25.00</p>
+
+            <button class="btn-remove text-slate-400 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors" aria-label="Remove item">
+              🗑️
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Order Summary Card (4 Cols) -->
+      <div class="lg:col-span-4 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+        <h2 class="text-xl font-bold text-slate-900 border-b border-slate-100 pb-4">Order Summary</h2>
+
+        <div class="space-y-3 text-sm">
+          <div class="flex justify-between text-slate-600">
+            <span>Subtotal (<span id="summary-total-items">3</span> items)</span>
+            <span class="font-semibold text-slate-900" id="subtotal-val">$100.00</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>Estimated Shipping</span>
+            <span class="font-semibold text-slate-900" id="shipping-val">$5.00</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>Estimated Tax</span>
+            <span class="font-semibold text-slate-900" id="tax-val">$8.00</span>
+          </div>
+          <div class="border-t border-slate-100 pt-4 flex justify-between items-center text-lg font-extrabold text-slate-900">
+            <span>Total</span>
+            <span class="text-brand-600 text-2xl" id="grand-total-val">$113.00</span>
+          </div>
+        </div>
+
+        <!-- Coupon Input -->
+        <form onsubmit="event.preventDefault();" class="flex gap-2">
+          <input type="text" placeholder="Promo Code" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+          <button type="submit" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-xl transition-colors">Apply</button>
+        </form>
+
+        <button class="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold text-base rounded-2xl transition-all shadow-md flex items-center justify-center gap-2">
+          <span>Proceed to Checkout</span>
+          <span>🔒</span>
+        </button>
+
+        <p class="text-center text-xs text-slate-400 flex items-center justify-center gap-1">
+          <span>🌿</span> Eco-friendly, safe plant delivery guaranteed
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-brand-900 text-slate-300 pt-16 pb-8 border-t border-brand-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-brand-700/60">
+      <div class="space-y-4">
+        <a href="index.html" class="text-2xl font-black text-white flex items-center gap-2"><span>🌿</span> Greenden</a>
+        <p class="text-slate-300 text-sm">Your trusted online nursery bringing healthy plants straight to your home.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="product.html" class="hover:text-white">Products</a></li>
+          <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-4">Categories</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="product.html" class="hover:text-white">Indoor Plants</a></li>
+          <li><a href="product.html" class="hover:text-white">Air Purifiers</a></li>
+          <li><a href="product.html" class="hover:text-white">Succulents</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-4">Contact</h4>
+        <p class="text-sm text-slate-300">📍 123 Botanical Ave, Green City</p>
+        <p class="text-sm text-slate-300 mt-2">✉️ support@greenden.com</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-xs text-center text-slate-400">
+      © 2026 Greenden.com | All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Drawer & Dynamic Cart Script -->
+  <script>
+    // --- Drawer Logic ---
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sideDrawer = document.getElementById('side-drawer');
+    const overlay = document.getElementById('overlay');
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+          overlay.classList.remove('opacity-0');
+          sideDrawer.classList.remove('translate-x-full');
+        }, 10);
+      });
+    }
+
+    const closeDrawer = () => {
+      sideDrawer.classList.add('translate-x-full');
+      overlay.classList.add('opacity-0');
+      setTimeout(() => overlay.classList.add('hidden'), 300);
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+
+    // --- Dynamic Cart Calculation Logic ---
+    function updateCartTotals() {
+      const cartItems = document.querySelectorAll('.cart-item');
+      let subtotal = 0;
+      let totalItems = 0;
+
+      cartItems.forEach(item => {
+        const price = parseFloat(item.getAttribute('data-price'));
+        const qtyElement = item.querySelector('.qty-count');
+        const qty = parseInt(qtyElement.textContent);
+        
+        const itemTotal = price * qty;
+        item.querySelector('.item-total').textContent = `$${itemTotal.toFixed(2)}`;
+
+        subtotal += itemTotal;
+        totalItems += qty;
+      });
+
+      // Shipping & Tax calculations
+      const shipping = subtotal > 0 ? 5.00 : 0.00;
+      const tax = subtotal * 0.08; // 8% tax
+      const grandTotal = subtotal + shipping + tax;
+
+      // Update Order Summary UI
+      document.getElementById('subtotal-val').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('shipping-val').textContent = `$${shipping.toFixed(2)}`;
+      document.getElementById('tax-val').textContent = `$${tax.toFixed(2)}`;
+      document.getElementById('grand-total-val').textContent = `$${grandTotal.toFixed(2)}`;
+      document.getElementById('summary-total-items').textContent = totalItems;
+
+      // Update Nav Badges
+      const navBadge = document.getElementById('nav-cart-count');
+      const mobileBadge = document.querySelector('.mobile-cart-count');
+      const drawerBadge = document.querySelector('.drawer-cart-count');
+
+      if (navBadge) navBadge.textContent = totalItems;
+      if (mobileBadge) mobileBadge.textContent = totalItems;
+      if (drawerBadge) drawerBadge.textContent = totalItems;
+
+      // Empty Cart View
+      if (cartItems.length === 0) {
+        document.getElementById('cart-items-container').innerHTML = `
+          <div class="bg-white p-12 rounded-3xl border border-slate-200 text-center space-y-4">
+            <span class="text-5xl">🪴</span>
+            <h3 class="text-xl font-bold text-slate-800">Your Cart is Empty</h3>
+            <p class="text-slate-500 text-sm">Looks like you haven't added any plants yet.</p>
+            <a href="product.html" class="inline-block mt-2 px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm rounded-xl transition-all shadow">
+              Explore Products
+            </a>
+          </div>
+        `;
+      }
+    }
+
+    // Event Listener for +, -, and Delete
+    document.getElementById('cart-items-container').addEventListener('click', (e) => {
+      const target = e.target;
+      const cartItem = target.closest('.cart-item');
+
+      if (!cartItem) return;
+
+      const qtySpan = cartItem.querySelector('.qty-count');
+      let currentQty = parseInt(qtySpan.textContent);
+
+      // Increase Qty
+      if (target.classList.contains('btn-plus')) {
+        currentQty++;
+        qtySpan.textContent = currentQty;
+        updateCartTotals();
+      }
+
+      // Decrease Qty
+      if (target.classList.contains('btn-minus')) {
+        if (currentQty > 1) {
+          currentQty--;
+          qtySpan.textContent = currentQty;
+          updateCartTotals();
+        }
+      }
+
+      // Remove Item
+      if (target.classList.contains('btn-remove') || target.closest('.btn-remove')) {
+        cartItem.remove();
+        updateCartTotals();
+      }
+    });
+
+    // Initial Calculation
+    updateCartTotals();
+  </script>
+</body>
+</html>
